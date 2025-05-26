@@ -44,8 +44,18 @@ make ./project/up_build
 # Apply Kubernetes manifests
 kubectl apply -f ./project/k8s
 
-# Access the front-end
-kubectl port-forward svc/front-end 8081:8081
+# Start minikube
+minikube start
+
+# Expose Broker Service
+kubectl expose deployment broker-service --type=LoadBalancer --port=8080 --target-port=8080
+
+# To make accessible LoadBalancer
+minikube tunnel
+
+# To see minikube dashboard
+ minikube dashboard
+#
 ```
 
 ## Project Structure
